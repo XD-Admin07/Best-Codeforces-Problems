@@ -7,32 +7,39 @@ int main() {
     ll t;
     cin >> t;
     while (t--) {
-        ll n, k;
-        cin >> n >> k;
-        vector<vector<int>> matrix(n, vector<int>(n));
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                cin >> matrix[i][j];
-            }
-        }
-        ll diff_cnt = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] != matrix[n - i - 1][n - j - 1]) {
-                    diff_cnt++;
+        ll n;
+        cin >> n;
+        vector<ll>arr(n);
+        for(auto&it:arr)cin>>it;
+
+        ll i=0;
+        while(i<n-1)
+        {
+            if(arr[i]<0)
+            {
+                ll left = (i-1>=0)?arr[i-1]:10e9;
+                ll right = (i+1<n)?arr[i+1]:10e9;
+
+                ll left_val =  (left<=abs(arr[i]))?(-left-arr[i]):0;
+                ll right_val = (right<=abs(arr[i]))?(-right-arr[i]):0;
+                
+                if(left_val>right_val)
+                {
+                    arr[i]=-arr[i];
+                    arr[i-1]=-arr[i-1];
+                }
+                else if(right_val>left_val)
+                {
+                    arr[i]=-arr[i];
+                    arr[i+1]=-arr[i+1];
                 }
             }
+
+            i++;
         }
-        diff_cnt/=2;
-        if(diff_cnt>k)cout<<"NO"<<"\n";
-        else{
-            ll temp=k-diff_cnt;
-            if(temp%2==0)cout<<"YES"<<"\n";
-            else{
-                if(n%2==0)cout<<"NO"<<"\n";
-                else cout<<"YES"<<"\n";
-            }
-        }
+        ll sum=0;
+        for(auto it:arr)sum+=it;
+        cout<<sum<<"\n";
 
     }
 }
