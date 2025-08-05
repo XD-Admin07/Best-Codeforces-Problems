@@ -2,7 +2,6 @@
 using namespace std;
 using ll = long long;
 const ll mod = 1e9 + 7;
-
 int main() {
     ll t;
     cin >> t;
@@ -21,16 +20,12 @@ int main() {
                 cnt_neg++;
             }
             sum+=arr[i];
-
         }
-
         if(cnt_neg&1)
         {
             sort(arr.begin(), arr.end());
              sum-=2*arr[0];
         }
-       
         cout<<sum<<"\n";
-
     }
 }
