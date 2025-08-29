@@ -35,7 +35,7 @@ int main()
             continue;
         }
         //Calculate gcd of values at even positions
-            ll gcd_even = arr[1];
+        ll gcd_even = arr[1];
         if(flag)
         {
             flag=false;
